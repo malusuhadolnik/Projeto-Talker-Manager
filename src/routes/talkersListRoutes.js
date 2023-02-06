@@ -1,9 +1,10 @@
 const express = require('express');
 const fs = require('fs/promises');
 const crypto = require('crypto');
+
 const talkersListRouter = express.Router();
-const validateEmail = require('../middlewares/validateEmail');
-const validatePassword = require('../middlewares/validatePassword');
+// const validateEmail = require('../middlewares/validateEmail');
+// const validatePassword = require('../middlewares/validatePassword');
 
 const HTTP_OK_STATUS = 200;
 
