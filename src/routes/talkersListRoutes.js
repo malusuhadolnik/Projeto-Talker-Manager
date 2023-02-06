@@ -23,8 +23,8 @@ talkersListRouter.get('/talker/:id', async (req, res) => {
   const targetID = Number(req.params.id);
   const talkersList = await readMyJSON();
   const getByID = talkersList.find((talker) => talker.id === targetID);
-  if (!getByID){
-    return  res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+  if (!getByID) {
+    return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
   }
   res.status(HTTP_OK_STATUS).send(getByID);
 });
