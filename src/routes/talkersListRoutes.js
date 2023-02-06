@@ -2,22 +2,23 @@ const express = require('express');
 const fs = require('fs/promises');
 const crypto = require('crypto');
 const talkersListRouter = express.Router();
+const validateEmail = require('../middlewares/validateEmail');
+const validatePassword = require('../middlewares/validatePassword');
 
 const HTTP_OK_STATUS = 200;
 
-const token = () => {
-    return crypto.randomBytes(8).toString('hex');
-  };
+const token = () => crypto.randomBytes(8).toString('hex');
 
 const readMyJSON = async () => {
   const myJSON = await fs.readFile('src/talker.json', 'utf8');
   return JSON.parse(myJSON);
 };
 
-const writeMyJSON = async (myJaSON) => {
-    const toString = JSON.stringify(myJaSON);
+const writeMyJSON = async (myJASON) => {
+    const toString = JSON.stringify(myJASON);
     const updateJSON = await fs.writeFile('src/talker.json', toString);
-}
+    return updateJSON;
+};
 
 talkersListRouter.get('/talker', async (_req, res) => {
   const talkersList = await readMyJSON();
@@ -40,7 +41,7 @@ talkersListRouter.get('/talker/:id', async (req, res) => {
 
 talkersListRouter.post('/login', async (req, res) => {
   const loginInfo = req.body;
-  const newLogin = { ...loginInfo};
+  const newLogin = { ...loginInfo };
   
   const talkersList = await readMyJSON();
   talkersList.push(newLogin);
@@ -49,8 +50,9 @@ talkersListRouter.post('/login', async (req, res) => {
   
   const theToken = token();
   return res.status(HTTP_OK_STATUS).json({ token: theToken });
-})
+});
 
+// Fontes consultadas para implementação do token:
 // https://www.tabnine.com/code/javascript/functions/crypto/randomBytes
 // https://www.geeksforgeeks.org/node-js-crypto-randombytes-method/
 // https://futurestud.io/tutorials/generate-a-random-string-in-node-js-or-javascript
