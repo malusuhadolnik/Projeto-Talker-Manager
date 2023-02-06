@@ -29,4 +29,10 @@ talkersListRouter.get('/talker/:id', async (req, res) => {
   res.status(HTTP_OK_STATUS).send(getByID);
 });
 
+//talkersListRouter.post()
+
+// https://www.tabnine.com/code/javascript/functions/crypto/randomBytes
+// https://www.geeksforgeeks.org/node-js-crypto-randombytes-method/
+// https://futurestud.io/tutorials/generate-a-random-string-in-node-js-or-javascript
+
 module.exports = talkersListRouter;
