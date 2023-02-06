@@ -12,7 +12,7 @@ const validateEmail =(req, res, next) => {
   const { email } = req.body;
   const isFormatValid = validateFormat(email);
 
-  if (email.lenght === 0){
+  if (!email || Object.values(email).length === 0){
     return res.status(400).json({ message: 'O campo \"email\" é obrigatório' });
   } else if (!isFormatValid){
     return res.status(400).json({ message: 'O \"email\" deve ter o formato \"email@email.com\"' });
