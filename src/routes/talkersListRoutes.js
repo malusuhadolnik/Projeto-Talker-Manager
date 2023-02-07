@@ -5,6 +5,13 @@ const crypto = require('crypto');
 const talkersListRouter = express.Router();
 const validateEmail = require('../middlewares/validateEmail');
 const validatePassword = require('../middlewares/validatePassword');
+const validateToken = require('../middlewares/validateToken');
+const validadeTalkerName = require('../middlewares/validateTalkerName');
+const validateTalkerAge = require('../middlewares/validateTalkerAge');
+const validateTalkView = require('../middlewares/validateTalkView');
+const validateTalk = require('../middlewares/validateTalk');
+const validadeTalkerRate = require('../middlewares/validateTalkRate');
+const talkerJason = require('../talker.json')
 
 const HTTP_OK_STATUS = 200;
 
@@ -15,10 +22,9 @@ const readMyJSON = async () => {
   return JSON.parse(myJSON);
 };
 
-const writeMyJSON = async (myJASON) => {
-    const toString = JSON.stringify(myJASON);
-    const updateJSON = await fs.writeFile('src/talker.json', toString);
-    return updateJSON;
+const writeMyJSON = async (data) => {
+    const writing = await fs.writeFile('src/talker.json', JSON.stringify(data));
+    return writing;
 };
 
 talkersListRouter.get('/talker', async (_req, res) => {
@@ -53,9 +59,32 @@ talkersListRouter.post('/login', validatePassword, validateEmail, async (req, re
   return res.status(HTTP_OK_STATUS).json({ token: theToken });
 });
 
+talkersListRouter.post('/talker', 
+  validateToken, 
+  validadeTalkerName, 
+  validateTalkerAge,
+  validateTalk,
+  validateTalkView,
+  validadeTalkerRate,
+  async (req, res) => {
+  const talkersList = await readMyJSON();
+
+  newTalker = { id: talkersList.length, ...req.body };
+  newList = [ ...talkersList, newTalker]
+ 
+  // talkersList.push(newTalker);
+  await writeMyJSON(newList);
+  
+  res.status(201).json(newTalker);
+});
+
 // Fontes consultadas para implementação do token:
 // https://www.tabnine.com/code/javascript/functions/crypto/randomBytes
 // https://www.geeksforgeeks.org/node-js-crypto-randombytes-method/
 // https://futurestud.io/tutorials/generate-a-random-string-in-node-js-or-javascript
+
+//docker container start talker_manager
+//docker exec -it talker_manager bash
+//npm run dev
 
 module.exports = talkersListRouter;

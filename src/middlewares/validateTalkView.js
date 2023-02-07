@@ -4,11 +4,8 @@ const dateRegex = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\
 const validateTalkView = (req, res, next) => {
   const { talk } = req.body;
   const { watchedAt } = talk;
-  const isDateValid = dateRegex.test(Object.values(watchedAt));
-
-  if (!talk) {
-    return res.status(400).json({ message: 'O campo "talk" é obrigatório' });
-  }
+  const isDateValid = dateRegex.test(watchedAt);
+  
   if (!watchedAt) {
     return res.status(400).json({ message: 'O campo "watchedAt" é obrigatório' });
   }
