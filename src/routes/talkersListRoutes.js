@@ -97,6 +97,16 @@ talkersListRouter.put('/talker/:id',
   res.status(200).json(talkersList[index]);
 });
 
+talkersListRouter.delete('/talker/:id', validateToken, async (req, res) => {
+  const { id } = req.params; 
+  const talkersList = await readMyJSON();
+
+  const filteredList = talkersList.filter((talker) => talker.id !== Number(id));
+
+  await writeMyJSON(filteredList);
+  res.status(204).json({});
+});
+
 // Fontes consultadas para implementação do token:
 // https://www.tabnine.com/code/javascript/functions/crypto/randomBytes
 // https://www.geeksforgeeks.org/node-js-crypto-randombytes-method/
