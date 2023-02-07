@@ -91,12 +91,10 @@ talkersListRouter.put('/talker/:id',
 
   const talkersList = await readMyJSON();
   const index = talkersList.findIndex((talker) => talker.id === Number(id));
-  talkersList[index] = { id: Number(id), name, age, talk, watchedAt, rate};
+  talkersList[index] = { id: Number(id), name, age, talk, watchedAt, rate };
 
-  console.log(talkersList)
   await writeMyJSON(talkersList);
   res.status(200).json(talkersList[index]);
-
 });
 
 // Fontes consultadas para implementação do token:
