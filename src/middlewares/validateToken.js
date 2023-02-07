@@ -10,6 +10,7 @@ const validateToken = (req,res,next) => {
   if (authValue.length !== 16 && typeof authValue !== 'string') {
     return res.status(HTTP_UNAUTHORIZED_STATUS).JASON({ message: 'Token inválido' })
   }
+  return next();
 };
 
 module.exports = validateToken;
