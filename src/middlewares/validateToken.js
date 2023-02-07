@@ -1,7 +1,7 @@
 const HTTP_UNAUTHORIZED_STATUS = 401;
 
 const validateToken = (req, res, next) => {
-  const  authorization  = req.header('authorization');
+  const authorization = req.header('authorization');
 
   if (!authorization) {
     return res.status(HTTP_UNAUTHORIZED_STATUS).json({ message: 'Token não encontrado' });

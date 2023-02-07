@@ -11,7 +11,6 @@ const validateTalkerAge = require('../middlewares/validateTalkerAge');
 const validateTalkView = require('../middlewares/validateTalkView');
 const validateTalk = require('../middlewares/validateTalk');
 const validadeTalkerRate = require('../middlewares/validateTalkRate');
-const talkerJason = require('../talker.json')
 
 const HTTP_OK_STATUS = 200;
 
@@ -69,8 +68,8 @@ talkersListRouter.post('/talker',
   async (req, res) => {
   const talkersList = await readMyJSON();
 
-  newTalker = { id: talkersList.length, ...req.body };
-  newList = [ ...talkersList, newTalker]
+  const newTalker = { id: talkersList.length, ...req.body };
+  const newList = [...talkersList, newTalker];
  
   // talkersList.push(newTalker);
   await writeMyJSON(newList);
@@ -82,9 +81,5 @@ talkersListRouter.post('/talker',
 // https://www.tabnine.com/code/javascript/functions/crypto/randomBytes
 // https://www.geeksforgeeks.org/node-js-crypto-randombytes-method/
 // https://futurestud.io/tutorials/generate-a-random-string-in-node-js-or-javascript
-
-//docker container start talker_manager
-//docker exec -it talker_manager bash
-//npm run dev
 
 module.exports = talkersListRouter;

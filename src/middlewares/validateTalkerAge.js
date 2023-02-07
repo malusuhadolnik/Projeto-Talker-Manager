@@ -11,7 +11,7 @@ const validateTalkerAge = (req, res, next) => {
     return res.status(BADREQ).json({ message: 'O campo "age" deve ser do tipo "number"' });
   }
   if (isInteger === false) {
-    return res.status(BADREQ).json({ message: 'O campo "age" deve ser um "number" do tipo inteiro' });
+    return res.status(400).json({ message: 'O campo "age" deve ser um "number" do tipo inteiro' });
   }
   if (age < 18) {
     return res.status(BADREQ).json({ message: 'A pessoa palestrante deve ser maior de idade' });
