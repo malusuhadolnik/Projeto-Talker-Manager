@@ -77,6 +77,28 @@ talkersListRouter.post('/talker',
   res.status(201).json(newTalker);
 });
 
+talkersListRouter.put('/talker/:id', 
+  validateToken, 
+  validadeTalkerName, 
+  validateTalkerAge,
+  validateTalk,
+  validateTalkView,
+  validadeTalkerRate,
+  async (req, res) => {
+  const { id } = req.params; 
+  const { name, age, talk } = req.body;
+  const { watchedAt, rate } = talk;
+
+  const talkersList = await readMyJSON();
+  const index = talkersList.findIndex((talker) => talker.id === Number(id));
+  talkersList[index] = { id: Number(id), name, age, talk, watchedAt, rate};
+
+  console.log(talkersList)
+  await writeMyJSON(talkersList);
+  res.status(200).json(talkersList[index]);
+
+});
+
 // Fontes consultadas para implementação do token:
 // https://www.tabnine.com/code/javascript/functions/crypto/randomBytes
 // https://www.geeksforgeeks.org/node-js-crypto-randombytes-method/
