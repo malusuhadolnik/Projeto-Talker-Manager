@@ -40,7 +40,6 @@ talkersListRouter.get('/talker/search', validateToken, async (req, res) => {
 
   const talkersList = await readMyJSON();
   console.log(talkersList);
-  console.log(Array.isArray(talkersList));
   const filterNames = talkersList.filter((talker) => talker.name.includes(q));
   console.log(filterNames);
 
