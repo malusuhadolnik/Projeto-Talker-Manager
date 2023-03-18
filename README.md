@@ -3,6 +3,8 @@
 # Sobre
 Este projeto foi desenvolvido durante o Módulo 3 - Back-End do curso de Desenvolvimento Web da Trybe.
 
+Nele, foi construída uma API para cadastro de palestrantes em um evento. Ela permite cadastrar, exibir e deletar palestrantes, bem como atualizar seus dados através de operações CRUD nas rotas ```/talker``` e ```/login```
+
 Os arquivos desenvolvidos por mim estão na pasta src. Os demais foram desenvolvidos pelo time da Trybe.
 
 ## Descrição dos endpoints:
@@ -35,7 +37,7 @@ npm install
 ``` 
 ### Rodando localmente
 
- - É necessário ter o node (versão 16 ou superior) instalado em sua máquina.
+ - É necessário ter o ```node``` (versão 16 ou superior) instalado em sua máquina.
  
  1. Clone este repositório em su máquina, e em seguida instale as dependências:
  ```bash
