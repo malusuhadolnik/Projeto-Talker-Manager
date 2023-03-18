@@ -26,6 +26,25 @@ const writeMyJSON = async (data) => {
     return writing;
 };
 
+talkersListRouter.get('/talker/search', validateToken, async (req, res) => {
+  const { q } = req.query;
+  const talkersList = await readMyJSON();
+
+  if (!q) {
+    return res.status(200).json(talkersList);
+  }
+
+  const filterNames = talkersList.filter((talker) => talker.name.includes(q));
+  console.log(filterNames);
+
+  if (filterNames.lenght > 0) {
+    return res.status(HTTP_OK_STATUS).json(filterNames);
+  }
+  if (filterNames.lenght === 0) {
+    return res.status(HTTP_OK_STATUS).json([]);
+  }
+});
+
 talkersListRouter.get('/talker', async (_req, res) => {
   const talkersList = await readMyJSON();
 
@@ -35,24 +54,6 @@ talkersListRouter.get('/talker', async (_req, res) => {
   res.status(HTTP_OK_STATUS).send(talkersList);
 });
 
-talkersListRouter.get('/talker/search', validateToken, async (req, res) => {
-  const { q } = req.query;
-
-  const talkersList = await readMyJSON();
-  console.log(talkersList);
-  const filterNames = talkersList.filter((talker) => talker.name.includes(q));
-  console.log(filterNames);
-
-  if (filterNames.lenght > 0) {
-    return res.status(HTTP_OK_STATUS).json(filterNames);
-  }
-  if (q === undefined) {
-    return res.status(200).json(talkersList);
-  }
-  if (filterNames.lenght === 0) {
-    return res.status(HTTP_OK_STATUS).json([]);
-  }
-});
 
 talkersListRouter.get('/talker/:id', async (req, res) => {
   const targetID = Number(req.params.id);
@@ -92,7 +93,7 @@ talkersListRouter.post('/talker',
  
   // talkersList.push(newTalker);
   await writeMyJSON(newList);
-  
+
   res.status(201).json(newTalker);
 });
 
