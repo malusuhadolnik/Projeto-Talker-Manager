@@ -3,7 +3,7 @@
 # Sobre
 Este projeto foi desenvolvido durante o Módulo 3 - Back-End do curso de Desenvolvimento Web da Trybe.
 
-Nele, foi construída uma API para cadastro de palestrantes em um evento. Ela permite cadastrar, exibir e deletar palestrantes, bem como atualizar seus dados através de operações CRUD nas rotas ```/talker``` e ```/login```. Algumas das rotas requerem validação de dados para que a requisição tenha sucesso.
+Nele, foi construída uma API para cadastro de palestrantes em um evento. Ela permite cadastrar, exibir e deletar palestrantes, bem como atualizar seus dados através de operações CRUD nas rotas ```/talker``` e ```/login```, utilizando o módulo ```fs```. Algumas dos endpoints requerem validação de dados para que a requisição tenha sucesso.
 
 Os arquivos desenvolvidos por mim estão na pasta src. Os demais foram desenvolvidos pelo time da Trybe.
 
@@ -53,7 +53,7 @@ Os arquivos desenvolvidos por mim estão na pasta src. Os demais foram desenvolv
 ## Tecnologias usadas
 
 > Back-End
-Docker, docker-compose, SQL, Node.js
+Node.js
 
 ## Instalando Dependências
 
