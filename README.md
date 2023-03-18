@@ -3,12 +3,52 @@
 # Sobre
 Este projeto foi desenvolvido durante o Módulo 3 - Back-End do curso de Desenvolvimento Web da Trybe.
 
-Nele, foi construída uma API para cadastro de palestrantes em um evento. Ela permite cadastrar, exibir e deletar palestrantes, bem como atualizar seus dados através de operações CRUD nas rotas ```/talker``` e ```/login```
+Nele, foi construída uma API para cadastro de palestrantes em um evento. Ela permite cadastrar, exibir e deletar palestrantes, bem como atualizar seus dados através de operações CRUD nas rotas ```/talker``` e ```/login```. Algumas das rotas requerem validação de dados para que a requisição tenha sucesso.
 
 Os arquivos desenvolvidos por mim estão na pasta src. Os demais foram desenvolvidos pelo time da Trybe.
 
 ## Descrição dos endpoints:
-
+<table>
+  <thead>
+    <tr>
+      <th>Método HTTP</th>
+      <th>Endpoint</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>/talker</td>
+      <td>Deve listar todas as pessoas palestrantes</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/talker/:id</td>
+      <td>Deve listar o usuário que corresponde à ID requisitada</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/login</td>
+      <td>Deve retornar um token aleatório</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/talker</td>
+      <td>Deve adicionar uma nova pessoa palestrante ao banco de dados, e retornar os dados inseridos juntamente com uma id única.</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>/talker/:id</td>
+      <td>Deve ser capaz de editar uma pessoa palestrante com base no id da rota, e retornar seusdados.</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/talker/:id</td>
+      <td>Deve ser capaz de deletar uma pessoa palestrante com base no id da rota.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Tecnologias usadas
 
